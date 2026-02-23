@@ -3,16 +3,14 @@
     --color-fondo: #Fcfbf9;
     --color-texto: #4a4a4a;
     --color-titulos: #2c2c2c;
-    --color-acento: #d5c5b4; /* Tono arena/cálido */
+    --color-acento: #d5c5b4; 
     --fuente-titulos: 'Cormorant Garamond', serif;
     --fuente-texto: 'Montserrat', sans-serif;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
     font-family: var(--fuente-texto);
@@ -27,6 +25,34 @@ h1, h2, h3, .logo {
     font-weight: 400;
 }
 
+/* --- LÓGICA DE IDIOMAS --- */
+/* Si el body tiene clase lang-es, ocultamos todo lo que tenga clase 'en' */
+body.lang-es .en { display: none !important; }
+/* Si el body tiene clase lang-en, ocultamos todo lo que tenga clase 'es' */
+body.lang-en .es { display: none !important; }
+
+/* Selector de Idioma en el Menú */
+.selector-idioma {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 20px;
+}
+
+.selector-idioma button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--fuente-texto);
+    font-size: 13px;
+    color: var(--color-texto);
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.selector-idioma button:hover { opacity: 0.8; }
+.selector-idioma button.activo { opacity: 1; font-weight: 500; }
+
 /* Cabecera */
 header {
     display: flex;
@@ -39,11 +65,7 @@ header {
     z-index: 1000;
 }
 
-.logo {
-    font-size: 22px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
+.logo { font-size: 22px; letter-spacing: 3px; text-transform: uppercase; }
 
 nav ul {
     list-style: none;
@@ -61,9 +83,7 @@ nav a {
     transition: color 0.3s;
 }
 
-nav a:hover {
-    color: var(--color-acento);
-}
+nav a:hover { color: var(--color-acento); }
 
 .btn-cliente {
     border: 1px solid var(--color-texto);
@@ -79,7 +99,7 @@ nav a:hover {
 /* Hero Section */
 .hero {
     height: 70vh;
-    background-color: #eae6e1; /* Color de fondo suave si no hay foto */
+    background-color: #eae6e1; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,28 +107,12 @@ nav a:hover {
     padding: 0 20px;
 }
 
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 10px;
-    font-style: italic;
-}
-
-.hero p {
-    font-size: 1.1rem;
-    font-weight: 300;
-    letter-spacing: 1px;
-}
+.hero h1 { font-size: 3.5rem; margin-bottom: 10px; font-style: italic; }
+.hero p { font-size: 1.1rem; font-weight: 300; letter-spacing: 1px; }
 
 /* Especialidades */
-.categorias {
-    padding: 80px 5%;
-    text-align: center;
-}
-
-.categorias h2 {
-    font-size: 2.5rem;
-    margin-bottom: 50px;
-}
+.categorias { padding: 80px 5%; text-align: center; }
+.categorias h2 { font-size: 2.5rem; margin-bottom: 50px; }
 
 .grid-categorias {
     display: grid;
@@ -126,30 +130,13 @@ nav a:hover {
     transition: transform 0.5s ease;
 }
 
-.categoria-card:hover img {
-    transform: scale(1.03);
-}
-
-.categoria-card h3 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-.categoria-card p {
-    font-size: 0.95rem;
-    font-weight: 300;
-}
+.categoria-card:hover img { transform: scale(1.03); }
+.categoria-card h3 { font-size: 1.8rem; margin-bottom: 10px; }
+.categoria-card p { font-size: 0.95rem; font-weight: 300; }
 
 /* Galería de Muestra */
-.galeria-muestra {
-    padding: 40px 5%;
-    text-align: center;
-}
-
-.galeria-muestra h2 {
-    font-size: 2.5rem;
-    margin-bottom: 40px;
-}
+.galeria-muestra { padding: 40px 5%; text-align: center; }
+.galeria-muestra h2 { font-size: 2.5rem; margin-bottom: 40px; }
 
 .galeria {
     display: grid;
@@ -159,16 +146,20 @@ nav a:hover {
     margin: 0 auto;
 }
 
+.galeria a {
+    cursor: zoom-in;
+    display: block;
+    overflow: hidden;
+}
+
 .galeria img {
     width: 100%;
     height: 350px;
     object-fit: cover;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.galeria img:hover {
-    opacity: 0.8;
-}
+.galeria a:hover img { opacity: 0.8; transform: scale(1.02); }
 
 /* Contacto */
 .seccion-contacto {
@@ -177,26 +168,11 @@ nav a:hover {
     text-align: center;
 }
 
-.contacto-contenedor {
-    max-width: 600px;
-    margin: 0 auto;
-}
+.contacto-contenedor { max-width: 600px; margin: 0 auto; }
+.seccion-contacto h2 { font-size: 2.5rem; margin-bottom: 15px; }
+.seccion-contacto p { margin-bottom: 40px; font-weight: 300; }
 
-.seccion-contacto h2 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.seccion-contacto p {
-    margin-bottom: 40px;
-    font-weight: 300;
-}
-
-.formulario {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+.formulario { display: flex; flex-direction: column; gap: 20px; }
 
 .formulario input, .formulario select, .formulario textarea {
     width: 100%;
@@ -225,49 +201,28 @@ nav a:hover {
     transition: background-color 0.3s;
 }
 
-.btn-enviar:hover {
-    background-color: var(--color-acento);
-}
+.btn-enviar:hover { background-color: var(--color-acento); }
 
 /* Footer */
-footer {
-    text-align: center;
-    padding: 60px 20px;
-    background-color: var(--color-fondo);
+footer { text-align: center; padding: 60px 20px; background-color: var(--color-fondo); }
+.footer-info p { margin-bottom: 5px; }
+.footer-info a { color: var(--color-texto); text-decoration: none; }
+
+/* Animaciones de Scroll */
+.oculto {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
 }
 
-.footer-info p {
-    margin-bottom: 5px;
-}
-
-.footer-info a {
-    color: var(--color-texto);
-    text-decoration: none;
-}
-
-.footer-legal {
-    margin-top: 30px;
-    font-size: 0.8rem;
-    color: #888;
-}
-
-.footer-legal a {
-    color: #888;
-    text-decoration: none;
-    margin: 0 10px;
+.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 20px;
-    }
-    nav ul {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .hero h1 {
-        font-size: 2.5rem;
-    }
+    header { flex-direction: column; gap: 20px; }
+    nav ul { flex-direction: column; gap: 15px; }
+    .hero h1 { font-size: 2.5rem; }
 }
